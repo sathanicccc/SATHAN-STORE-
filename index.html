@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATHAN STORE | Professional App Hub</title>
+    <title>SATHAN STORE | Premium Android Hub</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,26 +13,26 @@
 <header>
     <nav>
         <div class="brand">
-            <img src="https://i.ibb.co/v4m0mXz/1000011961.jpg" alt="Logo" class="nav-logo">
+            <img src="https://i.ibb.co/FLbGXbDR/1000011961.jpg" alt="Sathan Logo" class="nav-logo">
             <div class="logo-text">SATHAN <span>STORE</span></div>
         </div>
         <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search world's apps..." onkeyup="if(event.key==='Enter') searchApps()">
+            <input type="text" id="searchInput" placeholder="Search world's apps..." onkeydown="if(event.key==='Enter') searchApps()">
             <button onclick="searchApps()"><i class="fas fa-search"></i></button>
         </div>
     </nav>
 </header>
 
 <div class="categories-bar">
-    <button class="cat-btn active" onclick="filterCategory('All')">All</button>
-    <button class="cat-btn" onclick="filterCategory('Games')"><i class="fas fa-gamepad"></i> Games</button>
-    <button class="cat-btn" onclick="filterCategory('Social')"><i class="fas fa-share-alt"></i> Social</button>
-    <button class="cat-btn" onclick="filterCategory('Tools')"><i class="fas fa-tools"></i> System</button>
-    <button class="cat-btn" onclick="filterCategory('Hacking')"><i class="fas fa-user-secret"></i> Hacking</button>
+    <button class="cat-btn active" onclick="filterCategory('All', this)">All</button>
+    <button class="cat-btn" onclick="filterCategory('Games', this)">Games</button>
+    <button class="cat-btn" onclick="filterCategory('Social', this)">Social</button>
+    <button class="cat-btn" onclick="filterCategory('Tools', this)">System</button>
+    <button class="cat-btn" onclick="filterCategory('Hacking', this)">Hacking</button>
 </div>
 
 <main class="content">
-    <h2 id="section-title">Global Trending Apps</h2>
+    <h2 id="section-title">Loading Sathan Servers...</h2>
     <div id="app-grid" class="app-grid">
         </div>
 </main>
