@@ -1,0 +1,84 @@
+:root {
+    --primary: #27ae60;
+    --secondary: #2ecc71;
+    --dark: #1e272e;
+    --light: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+}
+
+nav {
+    background: var(--primary);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+.logo { color: white; font-size: 24px; font-weight: 800; }
+.logo span { color: var(--dark); }
+
+.search-box { display: flex; background: white; border-radius: 30px; padding: 5px 15px; width: 50%; }
+.search-box input { border: none; outline: none; padding: 10px; width: 100%; font-size: 16px; }
+.search-box button { border: none; background: none; cursor: pointer; color: var(--primary); font-size: 18px; }
+
+.hero { background: var(--secondary); color: white; text-align: center; padding: 40px 20px; }
+
+.main-container { padding: 30px; max-width: 1200px; margin: auto; }
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+}
+
+.app-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: 0.4s;
+}
+
+.app-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(39, 174, 96, 0.2); }
+
+.app-icon { width: 90px; height: 90px; border-radius: 20px; margin-bottom: 15px; object-fit: cover; }
+
+.app-name { font-weight: 600; font-size: 15px; margin-bottom: 10px; height: 40px; overflow: hidden; }
+
+.download-btn {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Loader Animation */
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
