@@ -3,47 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATHAN STORE | Premium Android Hub</title>
+    <title>SATHAN STORE | Professional App Hub</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<div id="splash">
-    <div class="splash-content">
-        <h1 class="logo-text">SATHAN <span>STORE</span></h1>
-        <div class="loading-bar"></div>
-    </div>
-</div>
-
 <header>
     <nav>
-        <div class="logo">SATHAN <span>STORE</span></div>
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" placeholder="Search Apps or Games..." onkeyup="if(event.key==='Enter') searchApps()">
+        <div class="brand">
+            <img src="https://i.ibb.co/v4m0mXz/1000011961.jpg" alt="Logo" class="nav-logo">
+            <div class="logo-text">SATHAN <span>STORE</span></div>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search world's apps..." onkeyup="if(event.key==='Enter') searchApps()">
             <button onclick="searchApps()"><i class="fas fa-search"></i></button>
         </div>
     </nav>
 </header>
 
-<main class="container">
-    <div id="status-msg">Trending Apps for You</div>
+<div class="categories-bar">
+    <button class="cat-btn active" onclick="filterCategory('All')">All</button>
+    <button class="cat-btn" onclick="filterCategory('Games')"><i class="fas fa-gamepad"></i> Games</button>
+    <button class="cat-btn" onclick="filterCategory('Social')"><i class="fas fa-share-alt"></i> Social</button>
+    <button class="cat-btn" onclick="filterCategory('Tools')"><i class="fas fa-tools"></i> System</button>
+    <button class="cat-btn" onclick="filterCategory('Hacking')"><i class="fas fa-user-secret"></i> Hacking</button>
+</div>
+
+<main class="content">
+    <h2 id="section-title">Global Trending Apps</h2>
     <div id="app-grid" class="app-grid">
         </div>
 </main>
 
 <div id="appModal" class="modal">
     <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModal()">&times;</span>
         <div id="modalBody"></div>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 SATHAN STORE | Fast & Secure Downloads</p>
-</footer>
-
 <script src="script.js"></script>
 </body>
 </html>
+
