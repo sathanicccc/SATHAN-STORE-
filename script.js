@@ -1,69 +1,63 @@
-// 1. Splash Screen Timeout
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('splash').style.opacity = '0';
-        setTimeout(() => { document.getElementById('splash').style.display = 'none'; }, 500);
-    }, 2000);
-});
+// Page load aagumpol Trending Apps kanikkan
+window.onload = () => { filterCategory('All'); };
 
-// 2. Search Function
-async function searchApps() {
-    const query = document.getElementById('searchInput').value;
+async function searchApps(keyword = null) {
+    const query = keyword || document.getElementById('searchInput').value;
     const grid = document.getElementById('app-grid');
-    const msg = document.getElementById('status-msg');
+    const title = document.getElementById('section-title');
 
     if (!query) return;
 
-    msg.innerText = `Searching SATHAN STORE for "${query}"...`;
-    grid.innerHTML = "";
+    title.innerText = `Results for: ${query}`;
+    grid.innerHTML = "<p>Scanning Sathan Servers...</p>";
 
     try {
+        // Fetching from a wider database
         const res = await fetch(`https://itunes.apple.com/search?term=${query}&entity=software&limit=30`);
         const data = await res.json();
-        
-        if (data.results.length === 0) {
-            msg.innerText = "No Apps Found!";
-            return;
-        }
+        grid.innerHTML = "";
 
-        msg.innerText = `${data.results.length} Apps Found`;
-
-        data.results.forEach((app, i) => {
+        data.results.forEach(app => {
             const card = document.createElement('div');
             card.className = 'app-card';
-            card.style.animationDelay = `${i * 0.05}s`;
             card.onclick = () => openModal(app);
-
+            
             card.innerHTML = `
                 <img src="${app.artworkUrl100}" class="app-icon">
                 <div class="app-name">${app.trackName}</div>
-                <button class="get-btn">GET APP</button>
+                <button class="dl-btn">GET PREMIUM</button>
             `;
             grid.appendChild(card);
         });
-    } catch (err) {
-        msg.innerText = "Error connecting to store.";
-    }
+    } catch (e) { grid.innerHTML = "<p>Connection Lost...</p>"; }
 }
 
-// 3. Modal & Redirect Logic
+function filterCategory(cat) {
+    // Buttons active state maattan
+    document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+    event?.target.classList.add('active');
+
+    if(cat === 'All') searchApps('Trending');
+    else if(cat === 'Hacking') searchApps('Network Tool Security');
+    else searchApps(cat);
+}
+
 function openModal(app) {
     const modal = document.getElementById('appModal');
     const body = document.getElementById('modalBody');
     
-    // Direct link to APKPure or Google Search for the APK
-    const apkDownloadUrl = `https://www.google.com/search?q=${encodeURIComponent(app.trackName)}+apk+download+apkpure`;
+    // Direct APK link redirect to search
+    const dlLink = `https://www.google.com/search?q=${encodeURIComponent(app.trackName)}+apk+direct+download`;
 
     body.innerHTML = `
-        <img src="${app.artworkUrl100}" style="width:100px; border-radius:22px; margin-bottom:15px;">
-        <h2>${app.trackName}</h2>
-        <p style="color:#2ecc71; font-weight:bold; margin:10px 0;">${app.primaryGenreName} • ${app.averageUserRating?.toFixed(1) || '4.5'} ⭐</p>
-        <div style="font-size:13px; color:#666; text-align:left; max-height:150px; overflow-y:auto; margin:15px 0;">${app.description}</div>
-        <a href="${apkDownloadUrl}" target="_blank" class="get-btn" style="display:block; text-decoration:none; padding:12px;">DOWNLOAD APK</a>
+        <img src="${app.artworkUrl100}" style="width:80px; border-radius:15px; margin-bottom:15px;">
+        <h3 style="color:white;">${app.trackName}</h3>
+        <p style="color:var(--primary); font-size:12px;">Category: ${app.primaryGenreName}</p>
+        <div style="font-size:12px; color:#aaa; margin:15px 0; max-height:100px; overflow-y:auto;">${app.description}</div>
+        <a href="${dlLink}" target="_blank" class="dl-btn" style="display:block; text-align:center; text-decoration:none;">DOWNLOAD FROM LOCAL SITE</a>
     `;
     modal.style.display = "block";
 }
 
 function closeModal() { document.getElementById('appModal').style.display = "none"; }
 
-window.onclick = (e) => { if (e.target.className === 'modal') closeModal(); }
